@@ -41,8 +41,8 @@
 	</developers>
 	<scm>
 		<connection>scm:github.com:dtbaum/screenrecorder.git</connection>
-		<developerConnection>scm:git:https://github.com/dtbaum/screenrecorder.git</developerConnection>
-		<url>https://github.com/dtbaum/screenrecorder</url>
+		<developerConnection>scm:git:https://github.com/jenkinsci/screenrecorder-plugin.git</developerConnection>
+		<url>jenkinsci/screenrecorder-plugin.git</url>
     <tag>HEAD</tag>
   </scm>
 	
