@@ -13,7 +13,7 @@
 
 	<artifactId>screenrecorder</artifactId>
         <groupId>io.jenkins.plugins</groupId>
-	<version>0.3-SNAPSHOT</version>
+	<version>0.3</version>
 	<packaging>hpi</packaging>
 
 	<licenses>
@@ -46,7 +46,7 @@
 		<connection>scm:github.com:dtbaum/screenrecorder.git</connection>
 		<developerConnection>scm:git:https://github.com/jenkinsci/screenrecorder-plugin.git</developerConnection>
 		<url>jenkinsci/screenrecorder-plugin.git</url>
-    <tag>HEAD</tag>
+    <tag>screenrecorder-0.3</tag>
   </scm>
 	
 	<url>https://wiki.jenkins-ci.org/display/JENKINS/ScreenRecorder+Plugin</url>
