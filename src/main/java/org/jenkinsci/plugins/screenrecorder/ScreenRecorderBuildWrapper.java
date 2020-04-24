@@ -30,6 +30,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
@@ -49,10 +50,10 @@ import hudson.Util;
 import hudson.model.AbstractBuild;
 import hudson.model.AbstractProject;
 import hudson.model.BuildListener;
-import hudson.model.Hudson;
 import hudson.tasks.BuildWrapper;
 import hudson.tasks.BuildWrapperDescriptor;
 import hudson.util.QuotedStringTokenizer;
+import jenkins.model.Jenkins;
 import jenkins.util.VirtualFile;
 import net.sf.json.JSONObject;
 
@@ -67,6 +68,7 @@ public class ScreenRecorderBuildWrapper extends BuildWrapper implements Serializ
 
   private transient Launcher launcher;
   private transient Proc ffmpegProc;
+  private transient String myFfmpegCommand;
 
   @DataBoundConstructor
   public ScreenRecorderBuildWrapper( String ffmpegCommand, Boolean failJobIfFailed)
@@ -106,9 +108,9 @@ public class ScreenRecorderBuildWrapper extends BuildWrapper implements Serializ
   {
     Thread.sleep(3000);//time to setup Xvnc plugin
     launcher = launcher_;
-    DescriptorImpl DESCRIPTOR = Hudson.getInstance().getDescriptorByType(DescriptorImpl.class);
+    DescriptorImpl DESCRIPTOR = Jenkins.getInstance().getDescriptorByType(DescriptorImpl.class);
     final Date from = new Date();
-    String myFfmpegCommand = Util.nullify(getFfmpegCommand());
+    myFfmpegCommand = Util.nullify(getFfmpegCommand());
     myFfmpegCommand = Util.replaceMacro(myFfmpegCommand, build.getEnvironment(listener));
     String outFilePath = Util.replaceMacro(outVideoFileName, build.getEnvironment(listener));
     File artifactsDir = build.getArtifactsDir();
@@ -132,7 +134,7 @@ public class ScreenRecorderBuildWrapper extends BuildWrapper implements Serializ
     {
       ProcStarter proc = launcher.launch().cmds( QuotedStringTokenizer.tokenize(myFfmpegCommand));
       proc.writeStdin();
-      //proc.readStderr();
+//      proc.readStdout();
       ffmpegProc = proc.start();
       String curCsp = System.getProperty("hudson.model.DirectoryBrowserSupport.CSP","");
       if (!curCsp.contains("media-src"))
@@ -228,10 +230,7 @@ public class ScreenRecorderBuildWrapper extends BuildWrapper implements Serializ
         }
         else 
         {
-          String myFfmpegCommand = Util.nullify(getFfmpegCommand());
-          myFfmpegCommand = Util.replaceMacro(myFfmpegCommand, build.getEnvironment(listener));
-          listener.getLogger().println("ScreenRecorder: video recording failed, try to run '" + myFfmpegCommand + "' on the command line, in the target system");
-          
+          listener.getLogger().println("ScreenRecorder: video recording failed. Please, try to run '" + myFfmpegCommand + "' on the command line, in the target system (" + InetAddress.getLocalHost().getHostAddress() + "), as user: " + System.getProperty("user.name") + "." ) ;
           if (failJobIfFailed)
           {
             listener.getLogger().println("ScreenRecorder: video recording failed, fail the job due to failJobIfVideoRecordingFailed = true (see job config)");
@@ -263,10 +262,9 @@ public class ScreenRecorderBuildWrapper extends BuildWrapper implements Serializ
 
   public String getFfmpegCommand()
   {
-    DescriptorImpl DESCRIPTOR = Hudson.getInstance().getDescriptorByType(DescriptorImpl.class);
     if (ffmpegCommand == null || ffmpegCommand.isEmpty())
     {
-      return Hudson.getInstance().getDescriptorByType(DescriptorImpl.class).getFfmpegDefaultCommand();
+      return Jenkins.getInstance().getDescriptorByType(DescriptorImpl.class).getFfmpegDefaultCommand();
     }
     return ffmpegCommand;
   }
