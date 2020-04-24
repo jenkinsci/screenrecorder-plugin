@@ -3,5 +3,5 @@
   This view is used to render the installed plugins page.
 -->
 <div>
-Screenrecorder, plugin records video during this build, using <a href="https://ffmpeg.org/ffmpeg.html">FFmpeg</a>. Reorder videos are accessible as job artifact and per link in console.
+This plugin provides screen recording with <a href="https://ffmpeg.org/ffmpeg.html">FFmpeg</a>. Captured videos are accessible as build artifact and per link in Console Output of the build.
 </div>
