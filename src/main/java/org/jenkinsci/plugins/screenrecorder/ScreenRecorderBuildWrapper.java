@@ -277,7 +277,7 @@ public class ScreenRecorderBuildWrapper extends BuildWrapper implements Serializ
   @Extension(ordinal = -1)
   public static final class DescriptorImpl extends BuildWrapperDescriptor
   {
-    private String  ffmpegDefaultCommand = "ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0";
+    private String  ffmpegDefaultCommand = "ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0 -vcodec h264 -pix_fmt yuv420p";
     public DescriptorImpl()
     {
       super(ScreenRecorderBuildWrapper.class);
