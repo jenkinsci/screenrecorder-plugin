@@ -12,7 +12,7 @@
 
 	<artifactId>screenrecorder</artifactId>
         <groupId>io.jenkins.plugins</groupId>
-	<version>0.5-SNAPSHOT</version>
+	<version>0.5</version>
 	<packaging>hpi</packaging>
 	  <name>ScreenRecorder</name>
     <description>Saves captured screen video as build artifact in mp4 format</description>
@@ -48,6 +48,6 @@
 		<connection>scm:github.com:dtbaum/screenrecorder.git</connection>
 		<developerConnection>scm:git:https://github.com/jenkinsci/screenrecorder-plugin.git</developerConnection>
 		<url>jenkinsci/screenrecorder-plugin.git</url>
-    <tag>HEAD</tag>
+    <tag>screenrecorder-0.5</tag>
   </scm>
 </project>
