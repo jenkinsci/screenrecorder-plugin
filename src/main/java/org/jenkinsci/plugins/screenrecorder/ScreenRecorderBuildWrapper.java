@@ -253,7 +253,7 @@ public class ScreenRecorderBuildWrapper extends BuildWrapper implements Serializ
         + " <meta http-equiv=\"X-Content-Security-Policy\" content=\"default-src 'self'; script-src 'self'\">\n"
         + " <meta http-equiv=\"X-WebKit-CSP\" content=\"default-src 'self'; script-src 'self'\">\n"
         + "<title>" + title +"</title>\n" + "</head>\n" + "\n" + "<body>\n" + "<video src=\"" + videoFile
-        + "\" controls>\n" + "</video>\n" + "</body>\n" + "\n" + "</html>";
+        + "\" autoplay muted loop controls>\n" + "</video>\n" + "</body>\n" + "\n" + "</html>";
 
     BufferedWriter writer = new BufferedWriter(new FileWriter(htmlFile));
     writer.write(txt);
