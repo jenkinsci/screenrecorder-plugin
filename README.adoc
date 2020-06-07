@@ -8,7 +8,9 @@ Requirements: installed FFmpeg on target system (master or according slave).
 
 Screenshots:
 image::https://github.com/jenkinsci/screenrecorder-plugin/blob/master/images/globalSetting.png[]
+...
 image::globalSetting.png[]
+...
 image::localSetting.png[]
 image::console.png[]
 image::artefacts.png[]
