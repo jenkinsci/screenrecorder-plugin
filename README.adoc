@@ -6,13 +6,3 @@ The default recording command "ffmpeg -video_size 1920x1080 -framerate 25 -f x11
 can be customized in the configuration of the job.
 Requirements: installed FFmpeg on target system (master or according slave).
 
-Screenshots:
-image::https://github.com/jenkinsci/screenrecorder-plugin/blob/master/images/globalSetting.png[]
-...
-image::globalSetting.png[]
-...
-image::localSetting.png[]
-image::console.png[]
-image::artefacts.png[]
-image::video.png[]
-
